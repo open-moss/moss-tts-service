@@ -36,3 +36,13 @@ cd ..
 ```shell
 python server.py
 ```
+
+## 调用TTS合成
+
+```
+POST /text_to_speech
+{
+    "text": "大家好，我是MOSS",
+    "speechRate": 1
+}
+```
