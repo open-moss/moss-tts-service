@@ -14,6 +14,7 @@
 
 ```shell
 conda create -n moss-tts python=3.8
+conda activate moss-tts
 ```
 
 ## 安装依赖
@@ -21,6 +22,8 @@ conda create -n moss-tts python=3.8
 ```shell
 pip install -r requirements.txt
 ```
+
+如果pytorch依赖和显卡CUDA版本不匹配将导致无法使用GPU加速推理，需要卸载已安装的torch、torchvision、torchaudio后根据[pytorch官网](https://pytorch.org/)选择对应版本的pip安装命令安装。
 
 ## 构建monotonic_align
 Windows的二进制文件已经预构建，无需执行此步骤。
