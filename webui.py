@@ -81,5 +81,5 @@ if __name__ == "__main__":
                               inputs=[textbox, duration_slider],
                               outputs=[text_output, audio_output])
 
-    webbrowser.open("http://127.0.0.1:5011")
+    webbrowser.open("http://127.0.0.1:7860")
     app.launch(share=False)
