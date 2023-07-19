@@ -34,6 +34,12 @@ python setup.py build_ext --inplace
 cd ..
 ```
 
+## webui推理
+
+```shell
+python webui.py
+```
+
 ## 启动服务
 
 ```shell
