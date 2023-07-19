@@ -21,3 +21,4 @@ eng_to_ipa
 num_thai==0.0.5
 Cython==0.29.21
 opencc==1.1.1
+gradio

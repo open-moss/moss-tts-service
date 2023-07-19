@@ -123,6 +123,7 @@ if __name__ == "__main__":
     _ = model.eval()
 
     _ = utils.load_checkpoint(f"{MODEL_PATH}/moss.pth", model, None)
+
     speaker_ids = hps.speakers
     sampling_rate = hps.data.sampling_rate
     uvicorn.run(app, host="0.0.0.0", port=5010, log_config="uvicorn_config.json")
