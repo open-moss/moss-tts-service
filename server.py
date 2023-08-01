@@ -6,9 +6,12 @@ import re
 import uuid
 import torch
 import scipy.io.wavfile as wavf
+import numpy as np
+import struct
 from torch import no_grad, LongTensor
+from torchsummary import summary
 from fastapi import FastAPI, Request
-from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi.responses import StreamingResponse, JSONResponse, Response
 from fastapi.exceptions import HTTPException
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -82,7 +85,15 @@ async def text_to_speech(params: TextToSpeechParams):
         with open(tmp_file_path, "rb") as file_like:
             yield file_like.read()
         os.remove(tmp_file_path)
-    return StreamingResponse(generate(), media_type="audio/mp3")
+    return StreamingResponse(generate(), media_type="audio/x-wav")
+
+@app.post('/text_to_speech_raw')
+async def text_to_speech(params: TextToSpeechParams):
+    audio = predict(params.text, params.speechRate)
+    print(audio, len(audio))
+    audio = (audio * 48000.0).astype(np.int16, order='C')
+    print(audio, len(audio))
+    return Response(audio.tobytes(), media_type="application/octet-stream")
 
 def handle_exception(request: Request, e: Exception):
     err = {
